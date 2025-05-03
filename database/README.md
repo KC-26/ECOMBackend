@@ -1,0 +1,1 @@
+This SQL script will create a database required to run this project.
