@@ -11,11 +11,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.util.*;
 
 import static com.local.ecom.util.EComLogger.logError;
@@ -23,12 +20,22 @@ import static com.local.ecom.util.EComLogger.logError;
 public abstract class BaseService<T, U> {
 
     private static final String ERROR_KEY = "error";
-    private static final int BCRYPT_STRENGTH = 12;
 
     private final JpaRepository<T, U> jpaRepository;
     private final JpaSpecificationExecutor<T> specRepository;
-    private final ObjectMapper mapper = new ObjectMapper().findAndRegisterModules();
+    private ObjectMapper mapper;
+    private PasswordEncoder passwordEncoder;
 
+
+    @Autowired
+    public void setMapper(ObjectMapper mapper) {
+        this.mapper = mapper;
+    }
+
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
     protected BaseService(JpaRepository<T, U> jpaRepository,
                           JpaSpecificationExecutor<T> specRepository) {
@@ -94,7 +101,6 @@ public abstract class BaseService<T, U> {
             username = customerUser.getUsername();
         }
 
-        PasswordEncoder passwordEncoder = getPasswordEncoder();
         if (passwordEncoder == null) {
             errorEntries.add(Map.of(ERROR_KEY, "Unable to process request at this time, please try again later."));
             return false;
@@ -140,12 +146,12 @@ public abstract class BaseService<T, U> {
         return Collections.emptyList();
     }
 
-    private PasswordEncoder getPasswordEncoder() {
-        try {
-            return new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2A, BCRYPT_STRENGTH,
-                    SecureRandom.getInstanceStrong());
-        } catch (NoSuchAlgorithmException e) {
-            return null;
-        }
-    }
+//    private PasswordEncoder getPasswordEncoder() {
+//        try {
+//            return new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2A, BCRYPT_STRENGTH,
+//                    SecureRandom.getInstanceStrong());
+//        } catch (NoSuchAlgorithmException e) {
+//            return null;
+//          }
+//    }
 }

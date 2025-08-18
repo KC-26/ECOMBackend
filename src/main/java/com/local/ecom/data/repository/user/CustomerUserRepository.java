@@ -4,4 +4,8 @@ import com.local.ecom.data.entities.user.CustomerUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface CustomerUserRepository extends JpaRepository<CustomerUser, Long>, JpaSpecificationExecutor<CustomerUser> {}
+import java.util.Optional;
+
+public interface CustomerUserRepository extends JpaRepository<CustomerUser, Long>, JpaSpecificationExecutor<CustomerUser> {
+    Optional<CustomerUser> findByUsername(String username);
+}

@@ -22,12 +22,6 @@ public class SpecificationFactory {
         }
     }
 
-/*    private static String preProcessFilter(String filter) {
-        return filter.replaceAll("(?<![<>!])=(?!=)", "==")
-                .replaceAll("(?i)\\s+AND\\s+", ";")
-                .replaceAll("(?i)\\s+OR\\s+", ",");
-    }*/
-
     private static String preProcessFilter(String filter) {
         StringBuilder result = new StringBuilder();
         boolean insideQuotes = false;
@@ -48,7 +42,7 @@ public class SpecificationFactory {
 
                 // toggle quote mode and append the quote itself
                 insideQuotes = !insideQuotes;
-                result.append(c);
+                //result.append(c);
             } else {
                 currentSegment.append(c);
             }
@@ -68,9 +62,10 @@ public class SpecificationFactory {
     // Only apply replacements on unquoted parts
     private static String processUnquoted(String segment) {
         return segment
-                .replaceAll("(?<![<>!])=(?!=)", "==")
+                .replaceAll("\\s*(?<![<>!])=(?!=)\\s*", " == ")
                 .replaceAll("(?i)\\s+AND\\s+", ";")
                 .replaceAll("(?i)\\s+OR\\s+", ",");
+
     }
 
 }
