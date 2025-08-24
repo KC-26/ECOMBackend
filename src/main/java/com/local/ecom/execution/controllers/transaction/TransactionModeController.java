@@ -26,4 +26,14 @@ public class TransactionModeController {
     public ResponseEntity<Object> addTransactionModes(@RequestBody JsonNode jsonNode) {
         return transactionModeService.addAll(jsonNode, TransactionMode.class);
     }
+
+    @PutMapping
+    public ResponseEntity<Object> updateTransactionModes(@RequestBody JsonNode jsonNode) {
+        return transactionModeService.updateAll(jsonNode, TransactionMode.class);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Object> deleteTransactionModes(@RequestBody JsonNode jsonNode) {
+        return transactionModeService.deleteAll(jsonNode, TransactionMode.class);
+    }
 }

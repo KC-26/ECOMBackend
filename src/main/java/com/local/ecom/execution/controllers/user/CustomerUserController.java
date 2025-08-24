@@ -26,4 +26,14 @@ public class CustomerUserController {
     public ResponseEntity<Object> addCustomerUsers(@RequestBody JsonNode jsonNode) {
         return customerUserService.addAll(jsonNode, CustomerUser.class);
     }
+
+    @PutMapping
+    public ResponseEntity<Object> updateCustomerUsers(@RequestBody JsonNode jsonNode) {
+        return customerUserService.updateAll(jsonNode, CustomerUser.class);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Object> deleteCustomerUsers(@RequestBody JsonNode jsonNode) {
+        return customerUserService.deleteAll(jsonNode, CustomerUser.class);
+    }
 }

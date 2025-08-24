@@ -26,4 +26,14 @@ public class CartController {
     public ResponseEntity<Object> addCarts(@RequestBody JsonNode jsonNode) {
         return cartService.addAll(jsonNode, Cart.class);
     }
+
+    @PutMapping
+    public ResponseEntity<Object> updateCarts(@RequestBody JsonNode jsonNode) {
+        return cartService.updateAll(jsonNode, Cart.class);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Object> deleteCarts(@RequestBody JsonNode jsonNode) {
+        return cartService.deleteAll(jsonNode, Cart.class);
+    }
 }

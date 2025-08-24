@@ -26,4 +26,14 @@ public class TransactionController {
     public ResponseEntity<Object> addTransactions(@RequestBody JsonNode jsonNode) {
         return transactionService.addAll(jsonNode,Transaction.class);
     }
+
+    @PutMapping
+    public ResponseEntity<Object> updateTransactions(@RequestBody JsonNode jsonNode) {
+        return transactionService.updateAll(jsonNode, Transaction.class);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Object> deleteTransactions(@RequestBody JsonNode jsonNode) {
+        return transactionService.deleteAll(jsonNode, Transaction.class);
+    }
 }

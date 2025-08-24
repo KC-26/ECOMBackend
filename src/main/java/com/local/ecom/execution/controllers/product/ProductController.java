@@ -26,4 +26,14 @@ public class ProductController {
     public ResponseEntity<Object> addProducts(@RequestBody JsonNode jsonNode) {
         return productService.addAll(jsonNode,Product.class);
     }
+
+    @PutMapping
+    public ResponseEntity<Object> updateProducts(@RequestBody JsonNode jsonNode) {
+        return productService.updateAll(jsonNode,Product.class);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Object> deleteProducts(@RequestBody JsonNode jsonNode) {
+        return productService.deleteAll(jsonNode,Product.class);
+    }
 }

@@ -26,4 +26,14 @@ public class RoleController {
     public ResponseEntity<Object> addRoles(@RequestBody JsonNode jsonNode) {
         return roleService.addAll(jsonNode, Role.class);
     }
+
+    @PutMapping
+    public ResponseEntity<Object> updateRoles(@RequestBody JsonNode jsonNode) {
+        return roleService.updateAll(jsonNode, Role.class);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Object> deleteRoles(@RequestBody JsonNode jsonNode) {
+        return roleService.deleteAll(jsonNode, Role.class);
+    }
 }

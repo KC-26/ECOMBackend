@@ -26,4 +26,14 @@ public class AdminUserController {
     public ResponseEntity<Object> addAdminUsers(@RequestBody JsonNode jsonNode) {
         return adminUserService.addAll(jsonNode, AdminUser.class);
     }
+
+    @PutMapping
+    public ResponseEntity<Object> updateAdminUsers(@RequestBody JsonNode jsonNode) {
+        return adminUserService.updateAll(jsonNode, AdminUser.class);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Object> deleteAdminUsers(@RequestBody JsonNode jsonNode) {
+        return adminUserService.deleteAll(jsonNode, AdminUser.class);
+    }
 }
