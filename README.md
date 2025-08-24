@@ -1,2 +1,2 @@
 # ecom
-Repository to maintain ECOM - Spring Boot + React + SQL project
+Repository to maintain ECOM - Spring Boot + SQL project
